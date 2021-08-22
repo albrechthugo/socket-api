@@ -1,14 +1,10 @@
 import express, { Request, Response } from 'express'
+import { Socket, Server } from 'socket.io'
 import http from 'http'
-import { Socket } from 'socket.io';
-
-const io = require('socket.io')(http, {
-  cors: {
-    origins: ['http://localhost:4200']
-  }
-});
 
 const app = express()
+const server = http.createServer(app);
+const io = new Server(server)
 
 app.get('/', (req: Request, res: Response) => {
   res.send('Hello socket')
@@ -22,6 +18,6 @@ io.on('connection', (socket: Socket) => {
   });
 });
 
-http.createServer(app).listen(3000, () => {
+server.listen(3000, () => {
   console.log('listening on port 3000')
 })
