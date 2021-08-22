@@ -4,7 +4,11 @@ import http from 'http'
 
 const app = express()
 const server = http.createServer(app);
-const io = new Server(server)
+const io = new Server(server, {
+  cors: {
+    origin: ['http://localhost:4200']
+  }
+})
 
 app.get('/', (req: Request, res: Response) => {
   res.send('Hello socket')
