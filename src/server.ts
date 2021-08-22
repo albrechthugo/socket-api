@@ -1,4 +1,4 @@
-import express from 'express'
+import express, { Request, Response } from 'express'
 import http from 'http'
 import { Socket } from 'socket.io';
 
@@ -10,7 +10,7 @@ const io = require('socket.io')(http, {
 
 const app = express()
 
-app.get('/', (req, res) => {
+app.get('/', (req: Request, res: Response) => {
   res.send('Hello socket')
 })
 
